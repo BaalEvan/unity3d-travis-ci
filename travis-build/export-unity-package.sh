@@ -11,15 +11,15 @@ ERROR_CODE=0
 
 echo "Creating package at=$EXPORT_PATH"
 mkdir $UNITY_BUILD_DIR
+mkdir -p $RELEASE_DIRECTORY
 echo "Building project for Windows..."
-mkdir $UNITY_BUILD_DIR
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
   -batchmode \
   -nographics \
   -silent-crashes \
   -logFile \
   -projectPath "$PROJECT_PATH" \
-  -buildWindows64Player  "$(pwd)/Build/win/ci-build.exe" \
+  -buildWindows64Player  "$RELEASE_DIRECTORY/ci-build.exe" \
   -quit \
 | tee "$LOG_FILE"
 #/Applications/Unity/Unity.app/Contents/MacOS/Unity \
@@ -40,8 +40,8 @@ if [ $? = 0 ] ; then
 	#Preprare release unity package by packing into ZIP
 	RELEASE_ZIP_FILE=$RELEASE_DIRECTORY/$PROJECT_NAME-v$TRAVIS_TAG.zip
 
-	mkdir -p $RELEASE_DIRECTORY
-	mkdir -p $RELEASE_DIRECTORY/Build
+
+
 
 	echo "Preparing release for version: $TRAVIS_TAG"
 	cp "$EXPORT_PATH" "$RELEASE_DIRECTORY/"`basename "$EXPORT_PATH"`
