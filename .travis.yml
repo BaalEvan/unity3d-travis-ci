@@ -10,6 +10,8 @@ env:
 cache:
   directories:
     - $UNITY_DOWNLOAD_CACHE
+    - /home/travis/.rvm/
+    - /Users/travis/.rvm
 
     
 before_install:
