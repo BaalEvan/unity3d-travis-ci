@@ -10,7 +10,9 @@ env:
 cache:
   directories:
     - $UNITY_DOWNLOAD_CACHE
-    - /home/travis/.rvm/
+    - /home/travis/.rvm
+    - $(pwd)/MacEditorTargetInstaller
+    - MacEditorTargetInstaller
     - /Users/travis/.rvm
 
     
