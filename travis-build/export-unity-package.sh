@@ -30,12 +30,13 @@ if [ $? = 0 ] ; then
 	RELEASE_ZIP_FILE=$RELEASE_DIRECTORY/$PROJECT_NAME-v$TRAVIS_TAG.zip
 
 	mkdir -p $RELEASE_DIRECTORY
+	mkdir -p $RELEASE_DIRECTORY/Build
 
 	echo "Preparing release for version: $TRAVIS_TAG"
 	cp "$EXPORT_PATH" "$RELEASE_DIRECTORY/"`basename "$EXPORT_PATH"`
 	cp "./README.md" "$RELEASE_DIRECTORY"
 	cp "./LICENSE" "$RELEASE_DIRECTORY"
-	cp "$(pwd)/Build" "$RELEASE_DIRECTORY/Build"
+	cp "$UNITY_BUILD_DIR" "$RELEASE_DIRECTORY/Build"
 
 	echo "Files in release directory:"
 	ls $RELEASE_DIRECTORY
