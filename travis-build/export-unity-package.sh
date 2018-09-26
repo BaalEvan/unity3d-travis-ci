@@ -11,15 +11,26 @@ ERROR_CODE=0
 
 echo "Creating package at=$EXPORT_PATH"
 mkdir $UNITY_BUILD_DIR
+echo "Building project for Windows..."
+mkdir $UNITY_BUILD_DIR
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
   -batchmode \
   -nographics \
   -silent-crashes \
   -logFile \
   -projectPath "$PROJECT_PATH" \
-  -exportPackage "Assets" "$EXPORT_PATH" \
+  -buildWindows64Player  "$(pwd)/Build/win/ci-build.exe" \
   -quit \
-  | tee "$LOG_FILE"
+| tee "$LOG_FILE"
+#/Applications/Unity/Unity.app/Contents/MacOS/Unity \
+#  -batchmode \
+#  -nographics \
+#  -silent-crashes \
+#  -logFile \
+#  -projectPath "$PROJECT_PATH" \
+#  -exportPackage "Assets" "$EXPORT_PATH" \
+#  -quit \
+#  | tee "$LOG_FILE"
   
 if [ $? = 0 ] ; then
 	echo "Created package successfully."
