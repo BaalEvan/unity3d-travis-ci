@@ -19,7 +19,7 @@ echo "Building project for Windows..."
   -silent-crashes \
   -logFile \
   -projectPath "$PROJECT_PATH" \
-  -buildWindows64Player "$UNITY_BUILD_DIR" \
+  -buildWindows64Player "$UNITY_BUILD_DIR/win.exe" \
   -quit \
 | tee "$LOG_FILE"
 #/Applications/Unity/Unity.app/Contents/MacOS/Unity \
