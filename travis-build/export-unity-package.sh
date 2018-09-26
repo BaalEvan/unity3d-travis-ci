@@ -19,7 +19,7 @@ echo "Building project for Windows..."
   -silent-crashes \
   -logFile \
   -projectPath "$PROJECT_PATH" \
-  -buildWindows64Player  "$RELEASE_DIRECTORY/ci-build.exe" \
+  -buildWindows64Player "$UNITY_BUILD_DIR" \
   -quit \
 | tee "$LOG_FILE"
 #/Applications/Unity/Unity.app/Contents/MacOS/Unity \
@@ -40,14 +40,11 @@ if [ $? = 0 ] ; then
 	#Preprare release unity package by packing into ZIP
 	RELEASE_ZIP_FILE=$RELEASE_DIRECTORY/$PROJECT_NAME-v$TRAVIS_TAG.zip
 
-
-
-
 	echo "Preparing release for version: $TRAVIS_TAG"
 	cp "$EXPORT_PATH" "$RELEASE_DIRECTORY/"`basename "$EXPORT_PATH"`
 	cp "./README.md" "$RELEASE_DIRECTORY"
 	cp "./LICENSE" "$RELEASE_DIRECTORY"
-	cp "$UNITY_BUILD_DIR" "$RELEASE_DIRECTORY/Build"
+	cp -r "$UNITY_BUILD_DIR" "$RELEASE_DIRECTORY/Build"
 
 	echo "Files in release directory:"
 	ls $RELEASE_DIRECTORY
