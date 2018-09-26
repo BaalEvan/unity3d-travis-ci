@@ -35,6 +35,7 @@ if [ $? = 0 ] ; then
 	cp "$EXPORT_PATH" "$RELEASE_DIRECTORY/"`basename "$EXPORT_PATH"`
 	cp "./README.md" "$RELEASE_DIRECTORY"
 	cp "./LICENSE" "$RELEASE_DIRECTORY"
+	cp "$(pwd)/Build" "$RELEASE_DIRECTORY/Build"
 
 	echo "Files in release directory:"
 	ls $RELEASE_DIRECTORY
